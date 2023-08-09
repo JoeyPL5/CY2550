@@ -1,19 +1,14 @@
-JAVAC = javac
+JFLAGS = -g
+JC = javac
+.SUFFIXES: .java .class
+.java.class:
+	$(JC) $(JFLAGS) $*.java
 
-SRCDIR = .
-BINDIR = .
+CLASSES = xkcdpwgen.java
 
-SOURCES = $(wildcard $(SRCDIR)/*.java)
+default: classes
 
-CLASSES = $(patsubst $(SRCDIR)/%.java,$(BINDIR)/%.class,$(SOURCES))
-
-all: $(CLASSES)
-
-$(BINDIR)/%.class: $(SRCDIR)/%.java
-	@mkdir -p $(BINDIR)
-	$(JAVAC) -d $(BINDIR) $<
+classes: $(CLASSES:.java=.class)
 
 clean:
-	rm -rf $(BINDIR)
-
-
+	$(RM) *.class
