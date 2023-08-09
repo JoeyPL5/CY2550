@@ -1,5 +1,8 @@
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
@@ -30,8 +33,8 @@ public class xkcdpwgen {
      */
     private static void importWords() {
         try {
-            String wordsFilePath = "C:/Users/Joey/IdeaProjects/XKCDPassword/src/words.txt";
-            words = Files.readAllLines(Paths.get(wordsFilePath));
+            Path filepath = Paths.get("words.txt");
+            words = Files.readAllLines(filepath);
         } catch (IOException e) {
             // ignore
         }
@@ -101,7 +104,7 @@ public class xkcdpwgen {
      * @param args command-line arguments
      */
     private static void readArgs(String[] args) {
-        if (args[0].equals("-h") || args[0].equals("--help")) {
+        if (args.length > 0 && (args[0].equals("-h") || args[0].equals("--help"))) {
             System.out.println(getHelp());
             return;
         }
