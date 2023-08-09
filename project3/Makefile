@@ -1,14 +1,5 @@
-JFLAGS = -g
-JC = javac
-.SUFFIXES: .java .class
-.java.class:
-	$(JC) $(JFLAGS) $*.java
-
-CLASSES = xkcdpwgen.java
-
-default: classes
-
-classes: $(CLASSES:.java=.class)
-
+all: xkcdpwgen.class
+xkcdpwgen.class: xkcdpwgen.java
+	javac -classpath . xkcdpwgen.java
 clean:
-	$(RM) *.class
+	rm -f *.class
